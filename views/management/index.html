@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sowards Ranch site, for ranch management and employees to view and manage information">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Sowards Ranch Management</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <img class=logo src="images/placeholder.jpg" alt="logo">
+            <a href="index.html">Home</a>
+            <a href="livestock.html">Livestock</a> 
+            <!-- drop down: view and manage info for [cows, other animals] -->
+            <a href="handbooks.html">Handbooks</a>
+            <!-- drop down: general management, yearly schedule -->
+            <a href="employees.html">Employees</a>
+            <!-- drop down: handbook, records -->
+            <a href="taxes.html">Taxes</a>
+            <!-- drop down: past tax records, info record for <thisYear> -->
+            <a href="resources.html">Resources</a>
+            <!-- drop down: for livestock, for business stuff, for equipment, ??
+                [base on time-of-year, organize by people/stores/stuff, or (userfriendly!) organize by what user needs] -->
+        </nav>
+    </header>
+    <main>
+        <h1>Sowards Ranch Management Website</h1>
+        <p>Here you can navigate to: <br>
+            Livestock: view and manage information about the animals <br>
+            Handbooks: general management, yearly schedule <br>
+            Employees: handbook, records <br>
+            Taxes: past tax records, information for this year <br>
+            Resources: for livestock, for business, for equipment, and other 
+        </p>
+    </main>
+    <footer>
+        <span class="copyright">&copy;<span id="year"></span> Sowards Ranch</span>
+        <span>Last Modified: <span id="lastMod"></span></span>
+        <div class="contact">
+            <p>Mailing Address: Manassa, CO 81141</p>
+            <p>Phone: (719)-111-1111</p>
+        </div>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
