@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `cows_db`.`death` ;
 
 CREATE TABLE IF NOT EXISTS `cows_db`.`death` (
   `death_id` INT NOT NULL AUTO_INCREMENT,
-  `if_died` TINYINT NOT NULL,
+  `if_died` TINYINT NOT NULL DEFAULT 1,
   `death_date` DATE NOT NULL,
   `death_notes` VARCHAR(150) NULL,
   PRIMARY KEY (`death_id`),
@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `cows_db`.`sale` ;
 
 CREATE TABLE IF NOT EXISTS `cows_db`.`sale` (
   `sale_id` INT NOT NULL AUTO_INCREMENT,
-  `if_sold` TINYINT NOT NULL,
+  `if_sold` TINYINT NOT NULL DEFAULT 1,
   `sale_date` DATE NOT NULL,
   `sale_notes` VARCHAR(150) NULL,
   PRIMARY KEY (`sale_id`),
@@ -178,6 +178,7 @@ DROP TABLE IF EXISTS `cows_db`.`shots` ;
 CREATE TABLE IF NOT EXISTS `cows_db`.`shots` (
   `shot_id` INT NOT NULL AUTO_INCREMENT,
   `shot_name` VARCHAR(90) NOT NULL,
+  `regular_dose` VARCHAR(45) NULL,
   PRIMARY KEY (`shot_id`),
   UNIQUE INDEX `shot_id_UNIQUE` (`shot_id` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -218,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `cows_db`.`cow_has_shots` (
   `cow_id` INT NOT NULL,
   `shot_id` INT NOT NULL,
   `shot_date` DATE NOT NULL,
+  `shot_dose` VARCHAR(45) NULL,
   PRIMARY KEY (`cow_id`, `shot_id`),
   INDEX `fk_cow_has_shots_shots1_idx` (`shot_id` ASC) VISIBLE,
   INDEX `fk_cow_has_shots_cow1_idx` (`cow_id` ASC) VISIBLE,
@@ -244,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `cows_db`.`vet` (
   `vet_name` VARCHAR(45) NOT NULL,
   `visit_date` DATE NOT NULL,
   `reason` VARCHAR(150) NOT NULL,
-  `after_visit` VARCHAR(150) NOT NULL,
+  `after_visit` VARCHAR(150) NULL,
   `calf_id` INT NULL,
   `cow_id` INT NULL,
   `bull_id` INT NULL,
