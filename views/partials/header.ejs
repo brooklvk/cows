@@ -1,10 +1,10 @@
 <header>
-    <a href="/#home" title="Return to home page">Cows Ranch Site</a>
+    <a href="/#home" title="Return to home page">Ranch Site</a>
     <a href="/#home"><img class="logo" src="../../images/placeholder.jpg" alt="placeholder"></a>
 
-    <% if(locals.loggedin) { %> <div><a href="/account/account-management">Welcome <%= locals.accountData.account_firstname %></a></div>
-    <div><a title="Click to log out" href="/account/logout">Log Out</a></div>
+    <% if(locals.loggedin) { %> <div><a class="header-link" href="/account/account-management">Welcome <%= locals.accountData.account_firstname %></a></div>
+    <div><a class="header-link" title="Click to log out" href="/account/logout">Log Out</a></div>
     <% } else {%>
-    <div><a title="Click to log in" href="/account/login">Log In</a></div>
+    <div><a class="header-link" title="Click to log in" href="/account/login">Log In</a></div>
     <% } %>
 </header>
