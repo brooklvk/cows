@@ -16,16 +16,16 @@ const cookieParser = require("cookie-parser")
 /* ***********************
  * Middleware
  * ************************/
-// app.use(session({
-//   store: new (require('connect-pg-simple')(session))({
-//     createTableIfMissing: true,
-//     pool,
-//   }),
-//   secret: process.env.SESSION_SECRET,
-//   resave: true,
-//   saveUninitialized: true,
-//   name: 'sessionId',
-// }))
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -55,7 +55,17 @@ app.use(require("./routes/static"))
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// other routes like inventory, account 
+// Account route
+app.use("/account", require("./routes/accountRoute"))
+
+// Cows route 
+app.use("/cows", require("./routes/cowsRoute"))
+
+// Employee route 
+app.use("/employee", require("./routes/employeeRoute"))
+
+// Management route 
+app.use("/management", require("./routes/managementRoute"))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -88,5 +98,5 @@ const port = process.env.PORT
 * Log statement to confirm server operation
 * *********************** */
 app.listen(port, () => {
-    console.log(`app listening on ${host}:${port}`)
+  console.log(`app listening on ${host}:${port}`)
 });

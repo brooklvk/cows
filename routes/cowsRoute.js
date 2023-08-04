@@ -4,10 +4,9 @@ const utilities = require("../utilities/index")
 const accountController = require("../controllers/accountController")
 // const validate = require('../utilities/account-validation')
 
-//Routes 
+// Routes (from utilities/index getNav)
 
-// /management/handbooks 
-// /management/resources 
-// /management/taxes 
+// Cows links: drop down 
+
 
 module.exports = router;

@@ -6,17 +6,17 @@ require("dotenv").config()
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let list = "<ul>"
+  let nav = "<ul>"
 
-  list += '<li><a href="/#home" title="Home">Home</a></li>'
-  list += '<li><a href="/">Cows</a></li>'
-  list += '<li><a href="/">Employees</a></li>'
-  list += '<li><a href="/">Handbooks</a></li>'
-  list += '<li><a href="/">Resources</a></li>'
-  list += '<li><a href="/">Taxes</a></li>'
+  nav += '<li><a href="/" title="Home">Home</a></li>'
+  nav += '<li><a href="/cows">Cows</a></li>'//drop down w links to edit cow info, see cow info, etc, /cows/view /cows/edit 
+  nav += '<li><a href="/employee">Employees</a></li>'//drop down w links to view, edit 
+  nav += '<li><a href="/management/handbooks">Handbooks</a></li>'
+  nav += '<li><a href="/management/resources">Resources</a></li>'
+  nav += '<li><a href="/management/taxes">Taxes</a></li>'
 
-  list += "</ul>"
-  return list
+  nav += "</ul>"
+  return nav
 }
 
 /* ****************************************
