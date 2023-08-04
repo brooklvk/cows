@@ -17,4 +17,39 @@ router.get("/account-management", utilities.handleErrors(accountController.build
 // Route for registration 
 router.get("/register", utilities.handleErrors(accountController.buildRegistration))
 
+
+
+
+// Process the login request
+router.post(
+    "/login",
+    // validate.loginRules(),
+    // validate.checkLoginData,
+    utilities.handleErrors(accountController.accountLogin)
+)
+  
+// Process the registration data
+router.post(
+    "/register",
+    // validate.registrationRules(),
+    // validate.checkRegData,
+    utilities.handleErrors(accountController.accountRegistration)
+)
+  
+// Process the update (name/email)
+// router.post(
+//     "/update-account",
+    // validate.updateAccountRules(),
+    // validate.checkAccountData,
+//     utilities.handleErrors(accountController.updateAccount)
+// )
+  
+// Process change password 
+// router.post(
+//     "/update-password",
+    // validate.changePasswordRules(),
+    // validate.checkPasswordData,
+//     utilities.handleErrors(accountController.changePassword)  
+// )
+
 module.exports = router;
