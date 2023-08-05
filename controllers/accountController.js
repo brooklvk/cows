@@ -81,9 +81,11 @@ async function accountRegistration(req, res) {
         account_email,
         hashedPassword
     )
-  
+
+    console.log(regResult)
+
     if (regResult) {
-      req.flash("notice", `Congratulations, you\'re registered ${account_firstname}. Please log in.`)
+      req.flash("notice", `Congratulations, you\'re registered as ${account_firstname}. Please log in.`)
       res.status(201).render("account/login", {
         title: "Login",
         nav,
@@ -100,14 +102,25 @@ async function accountRegistration(req, res) {
 }
 
 // Deliver manage account view - upon login 
-// async function buildAccManage(req, res) {
-//     let nav = await utilities.getNav()
+async function buildAccManage(req, res) {
+    let nav = await utilities.getNav()
 
-//     res.render("account/account-management", {
-//         title: "Manage Account",
-//         nav,
-//         errors: null,
-//     })
-// }
+    res.render("account/account-management", {
+        title: "Manage Account",
+        nav,
+        errors: null,
+    })
+}
 
-module.exports = { buildLogin, accountLogin, buildRegistration, accountRegistration }
+// Deliver update account view - from manage view 
+async function buildAccUpdate(req, res) {
+    let nav = await utilities.getNav()
+
+    res.render("account/account-update", {
+        title: "Update Account",
+        nav,
+        errors: null,
+    })
+}
+
+module.exports = { buildLogin, accountLogin, buildRegistration, accountRegistration, buildAccManage, buildAccUpdate }

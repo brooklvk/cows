@@ -8,14 +8,17 @@ const baseController = require("../controllers/baseController")
 // Route for account login 
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
+// Route for registration 
+router.get("/register", utilities.handleErrors(accountController.buildRegistration))
+
 // Route for account logout 
 router.get("/logout", utilities.deleteCookie, utilities.handleErrors(baseController.buildHome))
 
 // Route for account management 
 router.get("/account-management", utilities.handleErrors(accountController.buildAccManage))
 
-// Route for registration 
-router.get("/register", utilities.handleErrors(accountController.buildRegistration))
+// Route for account updates 
+router.get("/account-update", utilities.handleErrors(accountController.buildAccUpdate))
 
 
 
