@@ -34,8 +34,7 @@ Util.checkJWTToken = (req, res, next) => {
         return res.redirect("/account/login")
        }
        res.locals.accountData = accountData
-      //  console.log(JSON.stringify(accountData))
-       res.locals.loggedin = 1
+       res.locals.loggedIn = 1
        next()
       })
     } else {
@@ -52,8 +51,7 @@ Util.checkJWTToken = (req, res, next) => {
       return res.redirect("/")
     }
     res.locals.accountData = null 
-    //  console.log(JSON.stringify(accountData))
-    res.locals.loggedin = 0
+    res.locals.loggedIn = 0
     next()
   }
 
