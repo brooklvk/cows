@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `cows_db`.`cow` (
   `phys_description` VARCHAR(45) NULL,
   `breed` VARCHAR(45) NULL,
   `notes` VARCHAR(150) NULL,
-  `bulling` VARCHAR(150) NULL,
   `death_id` INT NULL,
   `sale_id` INT NULL,
   `branding_date` DATE NULL,

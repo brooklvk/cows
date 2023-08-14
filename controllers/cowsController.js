@@ -18,10 +18,7 @@ async function buildView(req, res, next) {
     const calfShotsTable = await cowsModel.getCalfShotsTable()
 
     cowsData = { cowTable, calfTable, bullTable, deathTable, saleTable, vetTable, shotsTable, cowShotsTable, calfShotsTable }
-
-    // 
-    console.log(cowsData)
-
+    
     res.locals.cowsData = cowsData 
     const viewInfo = utilities.createView()
 
@@ -62,22 +59,50 @@ async function buildEdit(req, res, next) {
     })
 }
 
+/* ****************************************
+*  Deliver add new info view
+* *************************************** */
+async function buildAdd(req, res, next) {
+    const nav = await utilities.getNav()
+
+    const cowTable = await cowsModel.getCowTable()
+    const calfTable = await cowsModel.getCalfTable()
+    const bullTable = await cowsModel.getBullTable()
+    const deathTable = await cowsModel.getDeathTable()
+    const saleTable = await cowsModel.getSaleTable()
+    const vetTable = await cowsModel.getVetTable()
+    const shotsTable = await cowsModel.getShotsTable()
+    const cowShotsTable = await cowsModel.getCowShotsTable()
+    const calfShotsTable = await cowsModel.getCalfShotsTable()
+
+    cowsData = { cowTable, calfTable, bullTable, deathTable, saleTable, vetTable, shotsTable, cowShotsTable, calfShotsTable }
+
+    res.locals.cowsData = cowsData 
+    const addInfo = utilities.createAdd()
+
+    res.render("cows/add", {
+      title: "Add New Info",
+      nav,
+      addInfo,
+      errors: null,
+    })
+}
+
 // Insert new cow to db 
-async function insertCow(req, res, next) {
+async function addCow(req, res, next) {
     // make insert any animal? if cow, if calf etc? 
 
     // get list of info from res/req and set variables 
-    
+
     // const cow_tag_current 
     // const color 
     // const phys_description 
     // const breed 
     // const notes 
-    // const bulling 
     // const branding_date 
     // const birth_year 
 
-    const result = cowsModel.insertCow(cow_tag_current, color, phys_description, breed, notes, bulling, branding_date, birth_year) 
+    const result = cowsModel.insertCow(cow_tag_current, color, phys_description, breed, notes, branding_date, birth_year) 
 }
 
-module.exports = { buildView, buildEdit }
+module.exports = { buildView, buildEdit, buildAdd, addCow }

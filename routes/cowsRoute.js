@@ -10,10 +10,16 @@ router.get("/view", utilities.handleErrors(cowsController.buildView))
 // Route for edit cows info 
 router.get("/edit", utilities.handleErrors(cowsController.buildEdit))
 
+// Route for add new info 
+router.get("/add", utilities.handleErrors(cowsController.buildAdd))
 
+
+
+// Process edit a cow's info 
+router.post("/edit-cow", utilities.handleErrors(cowsController.editCow))
 
 // Process insert new cow 
-router.post("/insert-cow", utilities.handleErrors(cowsController.insertCow))
+router.post("/add-cow", utilities.handleErrors(cowsController.addCow))
 
 
 module.exports = router;

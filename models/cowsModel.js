@@ -4,7 +4,7 @@ const pool = require("../database/")
 
 async function getCowTable(){
     try {
-      const sql = "SELECT * FROM cow"
+      const sql = "SELECT cow_id, cow_tag_current, birth_year, color, phys_description, breed, notes, date(branding_date), mother_cow_id, cow_was_calf FROM cow"
       let result = await pool.query(sql)
         return result.rows 
     } catch (error) {
@@ -94,10 +94,10 @@ async function getCalfShotsTable(){
 
 // EDIT 
 
-async function insertCow(cow_tag_current, color, phys_description, breed, notes, bulling, branding_date, birth_year){
+async function insertCow(cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf){
     try {
-        const sql = "INSERT INTO cow (cow_id, cow_tag_current, color, phys_description, breed, notes, bulling, branding_date, birth_year) VALUES (DEFAULT, '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8');"
-        let result = await pool.query(sql)
+        const sql = "INSERT INTO cow (cow_id, cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf) VALUES (DEFAULT, '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8');"
+        let result = await pool.query(sql, [cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf])
         return result.rows
     } catch (error) {
         return error.message 

@@ -81,6 +81,10 @@ nav a {
     text-decoration: none;
 }
 
+#cows-div a:first-of-type {
+    padding: 25px 15px 15px 15px;
+}
+
 /* Main */
 
 main {
@@ -95,22 +99,29 @@ footer {
     padding: 20px;
 }
 
-/* CSS for index.html */
+/* Cows view, edit, add */
 
+.cows {
+    /* div container for .cow divs > forms */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
-/* CSS for livestock.html */
+.cow {
+    /* a div containing a form */
+    border: 5px solid var(--dark1);
+    width: 500px;
+    padding: 0 10px;
+    margin: 10px 0;
+}
 
-
-/* CSS for handbooks.html */
-
-
-/* CSS for employees.html */
-
-
-/* CSS for taxes.html */
-
-
-/* CSS for resources.html */
+.cow form fieldset {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 10px 0;
+}
 
 
 
