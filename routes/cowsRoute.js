@@ -1,12 +1,19 @@
 const express = require("express")
 const router = new express.Router() 
 const utilities = require("../utilities/index")
-const accountController = require("../controllers/accountController")
+const cowsController = require("../controllers/cowsController")
 // const validate = require('../utilities/account-validation')
 
-// Routes (from utilities/index getNav)
+// Route for view cows info 
+router.get("/view", utilities.handleErrors(cowsController.buildView))
 
-// Cows links: drop down 
+// Route for edit cows info 
+router.get("/edit", utilities.handleErrors(cowsController.buildEdit))
+
+
+
+// Process insert new cow 
+router.post("/insert-cow", utilities.handleErrors(cowsController.insertCow))
 
 
 module.exports = router;

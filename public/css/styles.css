@@ -34,7 +34,7 @@ header a {
 }
 
 .logo {
-    width: 50px;
+    width: 100px;
     height: auto;
 }
 
@@ -58,6 +58,26 @@ nav li {
 
 nav a {
     color: white;
+    text-decoration: none;
+}
+
+#cows-li:hover #cows-div{
+    display: flex;
+}
+
+#cows-div {
+    background-color: var(--dark1);
+    position: absolute;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 0 20px -10px;
+    display: none;
+}
+
+#cows-div a {
+    padding: 15px;
     text-decoration: none;
 }
 

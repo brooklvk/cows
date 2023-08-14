@@ -6,17 +6,17 @@ require("dotenv").config()
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let nav = "<ul>"
+    let nav = "<ul>"
 
-  nav += '<li><a href="/" title="Home">Home</a></li>'
-  nav += '<li><a href="/cows">Cows</a></li>'//drop down w links to edit cow info, see cow info, etc, /cows/view /cows/edit 
-  nav += '<li><a href="/employee">Employees</a></li>'//drop down w links to view, edit 
-  nav += '<li><a href="/management/handbooks">Handbooks</a></li>'
-  nav += '<li><a href="/management/resources">Resources</a></li>'
-  nav += '<li><a href="/management/taxes">Taxes</a></li>'
+    nav += '<li><a href="/" title="Home">Home</a></li>'
+    nav += '<li id="cows-li"><a href="/">Cows</a><div id="cows-div"><a href="/cows/view">View cows info</a><a href="/cows/edit">Edit cows info</a></div></li>'
+    nav += '<li><a href="/employee">Employees</a></li>'//drop down w links to view, edit 
+    nav += '<li><a href="/management/handbooks">Handbooks</a></li>'
+    nav += '<li><a href="/management/resources">Resources</a></li>'
+    nav += '<li><a href="/management/taxes">Taxes</a></li>'
 
-  nav += "</ul>"
-  return nav
+    nav += "</ul>"
+    return nav
 }
 
 /* ****************************************
@@ -40,12 +40,12 @@ Util.checkJWTToken = (req, res, next) => {
     } else {
      next()
     }
-  }
+}
   
-  /* ****************************************
-  * Delete token on logout and also on update account 
-  **************************************** */
-  Util.deleteCookie = (req, res, next) => {
+/* ****************************************
+* Delete token on logout and also on update account 
+**************************************** */
+Util.deleteCookie = (req, res, next) => {
     if (req.cookies.jwt) {
       res.clearCookie("jwt")
       return res.redirect("/")
@@ -53,8 +53,35 @@ Util.checkJWTToken = (req, res, next) => {
     res.locals.accountData = null 
     res.locals.loggedIn = 0
     next()
-  }
+}
 
+Util.createView = (req, res, next) => {
+
+  let viewInfo = `<p>${cowsData.cowTable[0].cow_id}</p>`
+
+  return viewInfo 
+}
+
+Util.createEdit = (req, res, next) => {
+
+  let editInfo = '<div>'
+
+  editInfo += `<p>Cow ID: ${cowsData.cowTable[0].cow_id}</p>`
+  editInfo += `<p>Cow Tag: ${cowsData.cowTable[0].cow_tag_current}</p>`
+  editInfo += `<p>Color: ${cowsData.cowTable[0].color}</p>`
+  editInfo += `<p>Physical Description: ${cowsData.cowTable[0].phys_description}</p>`
+  editInfo += `<p>Breed: ${cowsData.cowTable[0].breed}</p>`
+  editInfo += `<p>Notes: ${cowsData.cowTable[0].notes}</p>`
+  editInfo += `<p>Bulling: ${cowsData.cowTable[0].bulling}</p>`
+  let branding = cowsData.cowTable[0].branding_date
+  branding.toLocaleTimeString()
+  editInfo += `<p>Branding Date: ${branding}</p>`
+  editInfo += `<p>Birth Year: ${cowsData.cowTable[0].birth_year}</p>`
+
+  editInfo += '</div>'
+
+  return editInfo 
+}
 
 /* ****************************************
  * Middleware For Handling Errors

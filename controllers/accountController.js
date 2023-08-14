@@ -39,6 +39,7 @@ async function accountLogin(req, res) {
      delete accountData.account_password
      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+     utilities.checkJWTToken
      return res.redirect("/account/account-management")
      }
     } catch (error) {
@@ -106,7 +107,7 @@ async function buildAccManage(req, res) {
     let nav = await utilities.getNav()
 
     res.render("account/account-management", {
-        title: "Manage Account",
+        title: "My Account",
         nav,
         errors: null,
     })
