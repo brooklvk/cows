@@ -168,7 +168,7 @@ Util.createAdd = (req, res, next) => {
     addInfo += `<label>Breed: <input type="text" name="breed"></label>`
     addInfo += `<label>Physical Description: <br><textarea name="phys_description" cols="30" rows="10"></textarea></label>`
     addInfo += `<label>Notes: <br><textarea name="notes" cols="30" rows="10"></textarea></label>`
-    addInfo += `<label>Branding Date: <input type="date" name="branding_date"></label>`
+    addInfo += `<label>Branding Date: <input type="text" name="branding_date"></label>`// yyyy-mm-dd 
     addInfo += `<label>Mother Cow's ID: <input type="number" name="mother_cow_id"></label>`
     addInfo += `<label>This Cow's Calf ID: <input type="number" name="cow_was_calf"></label>`
   addInfo += '</fieldset>'

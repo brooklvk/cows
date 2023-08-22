@@ -88,21 +88,62 @@ async function buildAdd(req, res, next) {
     })
 }
 
-// Insert new cow to db 
-async function addCow(req, res, next) {
-    // make insert any animal? if cow, if calf etc? 
+async function editCow(req, res, next) {
+    const nav = await utilities.getNav()
 
-    // get list of info from res/req and set variables 
+    let { cow_id, cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf } = req.body
+    if (!phys_description) {phys_description = null}
+    if (!breed) {breed = null}
+    if (!notes) {notes = null}
+    if (!branding_date) {branding_date = null}
+    if (!mother_cow_id) {mother_cow_id = null}
+    if (!cow_was_calf) {cow_was_calf = null}
 
-    // const cow_tag_current 
-    // const color 
-    // const phys_description 
-    // const breed 
-    // const notes 
-    // const branding_date 
-    // const birth_year 
+    const editResult = await cowsModel.editCow(cow_id, cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf)
 
-    const result = cowsModel.insertCow(cow_tag_current, color, phys_description, breed, notes, branding_date, birth_year) 
+    if (editResult) {
+        req.flash("notice", `ID #${cow_id} was successfully updated.`)
+        res.redirect("/cows/edit")
+    } else {
+        req.flash("notice", "Sorry, the update failed.")
+        res.status(501).render("/cows/edit", {
+            title: "Edit Info",
+            nav,
+            errors: null,
+            cow_id, cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf
+        })
+    }
 }
 
-module.exports = { buildView, buildEdit, buildAdd, addCow }
+// Insert new cow to db 
+async function addCow(req, res, next) {
+    const nav = await utilities.getNav()
+
+    let { cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf } = req.body
+
+    if (!phys_description) {phys_description = null}
+    if (!breed) {breed = null}
+    if (!notes) {notes = null}
+    if (!branding_date) {branding_date = null}
+    if (!mother_cow_id) {mother_cow_id = null}
+    if (!cow_was_calf) {cow_was_calf = null}
+
+    console.log(cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf)
+
+    const addResult = await cowsModel.insertCow(cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf) 
+    console.log(addResult)
+    if (addResult) {
+        req.flash("notice", `ID #${addResult.cow_id} was successfully added.`)
+        res.redirect("/cows/add")
+    } else {
+        req.flash("notice", "Sorry, the add failed.")
+        res.status(501).render("/cows/add", {
+            title: "Add New Info",
+            nav,
+            errors: null,
+            cow_id, cow_tag_current, birth_year, color, phys_description, breed, notes, branding_date, mother_cow_id, cow_was_calf
+        })
+    }
+}
+
+module.exports = { buildView, buildEdit, buildAdd, editCow, addCow }
